@@ -9,14 +9,15 @@ class SimpleUser(pyflat.Base):
 
 class BasicInfoUser(pyflat.Base):
     name = pyflat.Field(size=20)
-    age = pyflat.Field(size=4, sep="0", pad=pyflat.PAD_RIGHT)
+    age = pyflat.Field(size=4, sep="0", justify=pyflat.RJUST)
+    rate = pyflat.Field(size=10,sep="0", justify=pyflat.RJUST, decimal_point=pyflat.INCLUDE)
 
 
 class CompleteUser(pyflat.Base):
     name = pyflat.Field(size=20)
-    age = pyflat.Field(size=4, sep="0", pad=pyflat.PAD_RIGHT)
+    age = pyflat.Field(size=4, sep="0", justify=pyflat.RJUST)
     email = pyflat.Field(size=30)
-    income = pyflat.Field(size=12, sep="0", pad=pyflat.PAD_RIGHT)
+    income = pyflat.Field(size=12, sep="0", justify=pyflat.RJUST)
 
 
 @pytest.fixture
@@ -32,19 +33,20 @@ def basic_info_user():
     u = BasicInfoUser()
     u.name = "John Doe"
     u.age = 35
+    u.rate = 3.21
 
     return u
 
 
 @pytest.fixture
 def complete_user():
-    u = CompleteUser()
-    u.name = "John Doe"
-    u.email = "johndoe@email.com"
-    u.income = 2000.99
-    u.age = 35
+    c = CompleteUser()
+    c.name = "John Doe"
+    c.email = "johndoe@email.com"
+    c.income = 2000.99
+    c.age = 35
 
-    return u
+    return c
 
 
 def test_field_size(simple_user):
@@ -54,12 +56,12 @@ def test_field_size(simple_user):
 
 
 def test_separator_modifier(basic_info_user):
-    expected = "John Doe            0035"
+    expected = "John Doe            00350000003.21"
 
     assert repr(basic_info_user) == expected
 
 
-def test_nofp(complete_user):
+def test_decimal_point(complete_user):
     expected = "John Doe            0035johndoe@email.com             000000200099"
 
     assert repr(complete_user) == expected
