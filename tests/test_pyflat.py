@@ -9,15 +9,15 @@ class SimpleUser(pyflat.Base):
 
 class BasicInfoUser(pyflat.Base):
     name = pyflat.Field(size=20)
-    age = pyflat.Field(size=4, sep="0", justify=pyflat.RJUST)
-    rate = pyflat.Field(size=10,sep="0", justify=pyflat.RJUST, decimal_point=pyflat.INCLUDE)
+    age = pyflat.Field(size=4, sep="0", justify=pyflat.RIGHT)
+    rate = pyflat.Field(size=10,sep="0", justify=pyflat.RIGHT, decimal_point=pyflat.INCLUDE)
 
 
 class CompleteUser(pyflat.Base):
     name = pyflat.Field(size=20)
-    age = pyflat.Field(size=4, sep="0", justify=pyflat.RJUST)
+    age = pyflat.Field(size=4, sep="0", justify=pyflat.RIGHT)
     email = pyflat.Field(size=30)
-    income = pyflat.Field(size=12, sep="0", justify=pyflat.RJUST)
+    income = pyflat.Field(size=12, sep="0", justify=pyflat.RIGHT)
 
 
 @pytest.fixture
@@ -52,16 +52,16 @@ def complete_user():
 def test_field_size(simple_user):
     expected = "John Doe            "
 
-    assert repr(simple_user) == expected
+    assert simple_user.dump() == expected
 
 
 def test_separator_modifier(basic_info_user):
     expected = "John Doe            00350000003.21"
 
-    assert repr(basic_info_user) == expected
+    assert basic_info_user.dump() == expected
 
 
 def test_decimal_point(complete_user):
     expected = "John Doe            0035johndoe@email.com             000000200099"
 
-    assert repr(complete_user) == expected
+    assert complete_user.dump() == expected
