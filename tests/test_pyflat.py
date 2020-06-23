@@ -49,6 +49,15 @@ def complete_user():
     return c
 
 
+@pytest.fixture
+def complete_user_with_none():
+    c = CompleteUser()
+    c.name = "John Doe"
+    c.email = "johndoe@email.com"
+
+    return c
+
+
 def test_field_size(simple_user):
     expected = "John Doe            "
 
@@ -65,3 +74,9 @@ def test_decimal_point(complete_user):
     expected = "John Doe            0035johndoe@email.com             000000200099"
 
     assert complete_user.dump() == expected
+
+
+def test_none_values(complete_user_with_none):
+    expected = "John Doe            0000johndoe@email.com             000000000000"
+
+    assert complete_user_with_none.dump() == expected

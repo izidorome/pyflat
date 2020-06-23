@@ -38,6 +38,9 @@ class Base:
         for _, val in sorted(self._fields.items(), key=lambda o: o[1]._sortkey):
             value = self._values[val._fieldname]
 
+            if value is None:
+                value = ""
+
             if val._decimal_point == EXCLUDE and type(value) == float:
                 value = str(round(value, 2)).replace(".", "")
 
