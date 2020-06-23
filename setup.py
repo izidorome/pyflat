@@ -10,7 +10,7 @@ setuptools.setup(
     author_email='izidoro.rafa@gmail.com',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version='0.2.0',
+    version='0.2.1',
     description='Python library to transform objects into positional flat string lines',
     packages=setuptools.find_packages(),
     license="MIT",
