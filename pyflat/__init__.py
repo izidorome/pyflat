@@ -1,3 +1,3 @@
-from .pyflat import Base, Field, PAD_LEFT, PAD_RIGHT
+from .pyflat import Base, Field, LJUST, RJUST, INCLUDE, EXCLUDE
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"

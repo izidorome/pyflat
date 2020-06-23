@@ -15,11 +15,11 @@ $ pip install pyflat
 ### Example Usage
 
 ```python
-from pyflat import Base, Field, PAD_RIGHT
+from pyflat import Base, Field, RJUST
 
 class User(Base):
     name = Field(size=20)
-    income = Field(size=10, pos='0', pad=PAD_RIGHT)
+    income = Field(size=10, sep='0', justify=RJUST)
 
 
 user = User()

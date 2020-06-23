@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pyflat"
+version = "0.1.0"
+description = "Python library to transform objects into positional flat string lines"
+authors = ["Rafael Izidoro <izidoro.rafa@gmail.com>", "Rispar <tecnologia@rispar.com.br>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
